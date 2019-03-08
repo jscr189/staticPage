@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <base href="/">
+    <!-- Bootstrap CSS -->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+    <title>Automation Suite</title>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+    <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <a href="#" class="navbar-brand">
+            <h3 class="mb-0">Automation Suite</h3>
+        </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="#showcase" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#newsletter" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#loginModal">Login/Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="modal" id="loginModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login/Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close" onclick="flipToLogin()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <div id="login" class="justify-content-center d-block">
+                    <form>
+                      <div class="form-group">
+                          <label for="userName">UserName:</label>
+                          <input type="text" class="form-control" name="userName" id="userName" aria-describedby="helpId" placeholder="Enter UserName">
+                      </div>
+                      <div class="form-group">
+                          <label for="password">Password:</label>
+                          <input type="password" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="Enter Password">
+                      </div>
+                      <div class="form-group d-flex justify-content-center">
+                          <button class="btn btn-primary">Login</button>
+                      </div>
+                    </form>
+                  </div>
+                  <div id="register" class="justify-content-center d-none">
+                      <form>
+                          <div class="form-group">
+                              <label for="email">Email:</label>
+                              <input type="text" class="form-control" name="email" id="email" aria-describedby="helpIdEmail" placeholder="Enter Email">
+                              <small id="helpIdEmail" class="form-text text-muted">Should be in a valid format e.g xxx@xxx.xxx</small>
+                          </div>
+                          <div class="form-group">
+                              <label for="userName">UserName:</label>
+                              <input type="text" class="form-control" name="userName" id="userName" aria-describedby="helpIdUserName" placeholder="Enter UserName">
+                              <small id="helpIdUserName" class="form-text text-muted">Should be a minimum of 8 characters</small>
+                          </div>
+                          <div class="form-group">
+                              <label for="password">Password:</label>
+                              <input type="password" class="form-control" name="password" id="password" aria-describedby="helpIdPassword" placeholder="Enter Password">
+                              <small id="helpIdPassword" class="form-text text-muted">Should have a lowercase, an uppercase, a number and a special character</small>
+                          </div>
+                          <fieldset class="form-group">
+                            <div class="row">
+                              <legend class="col-form-label col-sm-6 pt-0">Are you an admin?</legend>
+                              <div class="col-sm-6">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="isAdmin" id="isAdmin1" value="yes" onclick="$('#apiKey').addClass('d-block');$('#apiKey').removeClass('d-none');">
+                                  <label class="form-check-label" for="isAdmin1">
+                                    Yes
+                                  </label>
+                                  <i class='far fa-question-circle' data-toggle="tooltip" data-placement="top" title="If you are an admin, send mail to xxx@deloitte.com to get Unique key for registering your project" style='font-size:1rem;color:teal'></i>
+                                </div>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="isAdmin" id="isAdmin2" value="no" checked  onclick="$('#apiKey').removeClass('d-block');$('#apiKey').addClass('d-none');">
+                                  <label class="form-check-label" for="isAdmin2">
+                                    No
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </fieldset>
+                          <div class="form-group d-none" id="apiKey">
+                            <label for="apiKey">API Key:</label>
+                            <input type="apiKey" class="form-control" name="password" id="password" aria-describedby="helpIdApiKey" placeholder="Enter API Key">
+                            <small id="helpIdApiKey" class="form-text text-muted">Enter 16 digit API key received from xxx@deloitte.com</small>
+                          </div>
+                          <div class="form-group d-flex justify-content-center">
+                              <button class="btn btn-primary">Register</button>
+                          </div>
+                      </form>
+                  </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-primary d-block" id="regBtn" onclick="flipToRegister();">New User? Click here to register</button>
+                    <button class="btn btn-primary d-none" id="logBtn" onclick="flipToLogin();">Existing User? Click here to login</button>
+                    <button class="btn btn-primary" data-dismiss="modal" onclick="flipToLogin()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="showcase" class="d-flex justify-content-center align-items-center">
+      <div id="overlay"></div>
+      <div id="header" class="container text-white text-center">
+          <h3 class="display-5 mb-0">DELOITTE's</h3>
+          <h1 class="display-1">AUTOMATION SUITE</h1>
+          <p class="lead d-none d-md-block">A web based solution to configure, schedule and run the executables over the cloud!!!</p>
+      </div>
+    </section>
+  <!--<app-root></app-root>-->
+  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+    function flipToRegister(){
+      $('#login').removeClass('d-block');
+      $('#login').addClass('d-none');
+      $('#register').removeClass('d-none');
+      $('#register').addClass('d-block');
+      $('#logBtn').addClass('d-block');
+      $('#regBtn').addClass('d-none');
+      $('#regBtn').removeClass('d-block');
+      $('#logBtn').removeClass('d-none');
+    }
+    function flipToLogin(){
+      $('#login').addClass('d-block');
+      $('#login').removeClass('d-none');
+      $('#register').addClass('d-none');
+      $('#register').removeClass('d-block');
+      $('#regBtn').addClass('d-block');
+      $('#logBtn').addClass('d-none');
+      $('#logBtn').removeClass('d-block');
+      $('#regBtn').removeClass('d-none');
+    }
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
+</body>
+</html>
